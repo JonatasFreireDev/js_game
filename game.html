@@ -12,14 +12,32 @@
     <link rel="stylesheet" href="/style/open-iconic-master/font/css/open-iconic-bootstrap.min.css">
     <!-- Normalize -->
     <link rel="stylesheet" href="/style/normalize.css">
+    <!-- JavaScript -->
+    <script src="script.js"></script>
     
     <title>Game</title>
   </head>
-  <body>
+  <body onresize="ajustGameSize()">
 
-    
+    <div class="panel"> 
+      <div class="points">
+        <span>pontos:</span>
+        <span id="pointCount">0</span>
+        <br>
+        <span>tempo:</span>
+        <span id="stopwatch"></span>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
+    <script>
+        document.getElementById(`stopwatch`).innerHTML = time
+
+        setInterval(function() {
+        randomPosition()
+      }, 3000)
+
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
