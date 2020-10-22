@@ -2,6 +2,15 @@
     font-family: jofrey;
     src: url(/style/fonts/joffrey.ttf);
 }
+
+@keyframes animation-menu {
+    0%   {width: 800px; height: 800px; transform: rotate(-8deg);}
+    25%  {width: 600px; height: 790px; transform: rotate(8deg);}
+    50%  {width: 800px; height: 800px; transform: rotate(-8deg);}
+    75%  {width: 600px; height: 790px; transform: rotate(8deg);}
+    100% {width: 800px; height: 800px; transform: rotate(-8deg);}
+}
+
 body {
     background-image: url(../style/img/paper_background.jpg);
     background-repeat: no-repeat;
@@ -12,18 +21,20 @@ body {
 }
 
 .star {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    
 }
 
 .star1 {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+    
 }
 
 .star2 {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
 }
 
 .panel {
@@ -38,5 +49,23 @@ body {
 .points {
     float: left;
     font-size: 40px;
+}
+
+.menu_name {
+    width: 800px;
+    height: 800px;
+    animation: animation-menu ;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+.button_config {
+    width: 200px;
+    height: 70px;
+    font-size: 40px;
+}
+
+.point_end {
+    font-size: 200px;
 }
 

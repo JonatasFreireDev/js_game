@@ -1,17 +1,6 @@
 var altura = 0
 var largura = 0
-var time = 60
 
-/* Definir tempod e jogo */
-var stopwatch = setInterval(function() {
-    time -= 1
-
-    if(time < 0) {
-        
-    }
-
-    document.getElementById(`stopwatch`).innerHTML = time
-}, 1000)
 
 /* Definir o tamanho da tela adequado */
 function ajustGameSize(){
@@ -37,7 +26,7 @@ function randomPosition() {
     posicaoY - posicaoY < 0 ? 0 : posicaoY
 
     var star = document.createElement(`img`)
-    star.src = `/style/img/star.jpg`
+    star.src = `/style/img/yellow.png`
     star.className = randomSize()
     star.style.left = posicaoX + `px`
     star.style.top = posicaoY + `px`
@@ -47,7 +36,9 @@ function randomPosition() {
         var pointCount = document.getElementById(`pointCount`)
 
         pointCount.innerHTML ++
-        
+
+        document.getElementById(`starRandom`).remove()
+        return randomPosition()
     }
 
     document.body.appendChild(star)
@@ -65,12 +56,13 @@ function randomSize() {
         case 2:
             return `star2`
     }
+}
 
-    /* if(classe = 1) {
-        star = `star`
-    } else if(classe = 2) {
-        star = `star1`
-    } else {
-        star = `star2`
-    } */
+/* Pontuação final */
+
+function fPoint() {
+    var pointCount = document.getElementById(`pointCount`)
+    document.getElementById(`finalPoint`) = pointCount
+
+    console.log(pointCount)
 }

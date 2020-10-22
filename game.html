@@ -31,11 +31,24 @@
 
     <!-- Optional JavaScript -->
     <script>
+        var time = 60
+
         document.getElementById(`stopwatch`).innerHTML = time
 
         setInterval(function() {
         randomPosition()
-      }, 3000)
+      }, 1500)
+
+      var stopwatch = setInterval(function() {
+      time -= 1
+
+      if(time < 0) {
+        clearInterval(stopwatch)
+        window.location.href = `endgame.html`
+      }
+
+      document.getElementById(`stopwatch`).innerHTML = time
+      }, 1000)
 
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
