@@ -3,7 +3,7 @@ var largura = 0
 
 
 /* Definir o tamanho da tela adequado */
-function ajustGameSize(){
+function ajustGameSize() {
     altura = window.innerHeight
     largura = window.innerWidth
 
@@ -15,12 +15,12 @@ ajustGameSize()
 function randomPosition() {
 
     /* Remover estrela existente */
-    if(document.getElementById(`starRandom`)) {
+    if (document.getElementById(`starRandom`)) {
         document.getElementById(`starRandom`).remove()
-    } 
-    
-    var posicaoX = Math.floor(Math.random() * largura) -90
-    var posicaoY = Math.floor(Math.random() * altura) -90
+    }
+
+    var posicaoX = Math.floor(Math.random() * largura) - 90
+    var posicaoY = Math.floor(Math.random() * altura) - 90
 
     posicaoX - posicaoX < 0 ? 0 : posicaoX
     posicaoY - posicaoY < 0 ? 0 : posicaoY
@@ -35,9 +35,9 @@ function randomPosition() {
     star.onclick = function() {
         var pointCount = document.getElementById(`pointCount`)
 
-        pointCount.innerHTML ++
+        pointCount.innerHTML++
 
-        document.getElementById(`starRandom`).remove()
+            document.getElementById(`starRandom`).remove()
         return randomPosition()
     }
 
@@ -48,7 +48,7 @@ function randomPosition() {
 function randomSize() {
     var classe = Math.floor(Math.random() * 3)
 
-    switch(classe) {
+    switch (classe) {
         case 0:
             return `star`
         case 1:

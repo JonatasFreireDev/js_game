@@ -4,11 +4,31 @@
 }
 
 @keyframes animation-menu {
-    0%   {width: 800px; height: 800px; transform: rotate(-8deg);}
-    25%  {width: 600px; height: 790px; transform: rotate(8deg);}
-    50%  {width: 800px; height: 800px; transform: rotate(-8deg);}
-    75%  {width: 600px; height: 790px; transform: rotate(8deg);}
-    100% {width: 800px; height: 800px; transform: rotate(-8deg);}
+    0% {
+        width: 800px;
+        height: 800px;
+        transform: rotate(-8deg);
+    }
+    25% {
+        width: 600px;
+        height: 790px;
+        transform: rotate(8deg);
+    }
+    50% {
+        width: 800px;
+        height: 800px;
+        transform: rotate(-8deg);
+    }
+    75% {
+        width: 600px;
+        height: 790px;
+        transform: rotate(8deg);
+    }
+    100% {
+        width: 800px;
+        height: 800px;
+        transform: rotate(-8deg);
+    }
 }
 
 body {
@@ -23,13 +43,11 @@ body {
 .star {
     width: 60px;
     height: 60px;
-    
 }
 
 .star1 {
     width: 70px;
     height: 70px;
-    
 }
 
 .star2 {
@@ -54,7 +72,7 @@ body {
 .menu_name {
     width: 800px;
     height: 800px;
-    animation: animation-menu ;
+    animation: animation-menu;
     animation-duration: 6s;
     animation-iteration-count: infinite;
 }
@@ -69,3 +87,17 @@ body {
     font-size: 200px;
 }
 
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+h1 {
+    color: black;
+    font-size: 150px;
+}
