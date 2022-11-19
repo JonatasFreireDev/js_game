@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bilu, a Cobrinha</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #2d2d2d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <canvas id="root"></canvas>
+  </div>
+  <script type="text/javascript">
+    const canvas = document.getElementById("root");
+    const ctx = canvas.getContext("2d");
+
+    var
+      estado,
+      altura,
+      largura,
+      framesPerSecond = 120,
+      intervalControl,
+      pressEnterControl,
+      record,
+      vel = 1,
+      vx = (vy = 0),
+      px = 10,
+      py = 15,
+      tp = 30,
+      qp = 20,
+      ax = (ay = 15),
+      trail = [],
+      estados = {
+        jogar: 0,
+        jogando: 1,
+        perdeu: 2,
+      };
+
+    tail = 5;
+
+    function game() {
+      px += vx;
+      py += vy;
+      if (px < 0) {
+        px = qp - 1;
+      }
+      if (px > qp - 1) {
+        px = 0;
+      }
+      if (py < 0) {
+        py = qp - 1;
+      }
+      if (py > qp - 1) {
+        py = 0;
+      }
+
+      ctx.fillStyle = "#e5e5e5";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(ax * tp, ay * tp, tp, tp);
+
+      ctx.fillStyle = "#c620f2";
+      for (var i = 0; i < trail.length; i++) {
+        ctx.fillRect(trail[i].x * tp, trail[i].y * tp, tp - 1, tp - 1);
+        if (trail[i].x == px && trail[i].y == py) {
+          vx = vy = 0;
+          tail = 5;
+
+          if (estado === estados.jogando) {
+            estado = estado.perdeu;
+            loseMenu();
+            clearInterval(intervalControl);
+          }
+        } else {
+          estado = estados.jogando;
+        }
+      }
+
+      trail.push({ x: px, y: py });
+      while (trail.length > tail) {
+        trail.shift();
+      }
+
+      if (ax == px && ay == py) {
+        tail++;
+        ax = Math.floor(Math.random() * qp);
+        ay = Math.floor(Math.random() * qp);
+      }
+    }
+    function keyPush(event) {
+      switch (event.keyCode) {
+        case 37: // Left
+          vx = -vel;
+          vy = 0;
+          break;
+        case 38: // up
+          vx = 0;
+          vy = -vel;
+          break;
+        case 39: // right
+          vx = vel;
+          vy = 0;
+          break;
+        case 40: // down
+          vx = 0;
+          vy = vel;
+          break;
+        default:
+          break;
+      }
+    }
+    function pressEnter(e) {
+      if (e.keyCode === 13) {
+        window.location.reload();
+        // estadoAtual = estados.jogando;
+        // intervalControl = setInterval(game, framesPerSecond);
+        // document.removeEventListener("keydown", pressEnter);
+      }
+    }
+    function loseMenu() {
+      if (trail.length > record) {
+        localStorage.setItem("record", trail.length);
+        record = trail.length;
+
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "green";
+        ctx.fillText("New Record ! ", largura / 2 - 70, altura / 2 - 50);
+      }
+
+      ctx.fillStyle = "red"; //desenha o score
+      ctx.font = "50px Arial";
+      ctx.strokeText("You Loose !", largura / 2 - 140, altura / 2);
+      ctx.font = "20px Arial";
+      ctx.fillText("Press Enter", largura / 2 - 60, altura / 2 + 30);
+      ctx.fillStyle = "red";
+      ctx.fillText("Record: " + record, 10, 25);
+
+      pressEnterControl = document.addEventListener("keydown", pressEnter)
+    }
+    function main() {
+      altura = window.innerHeight; // devolve o tamanho da altura da janela do usuário
+      largura = window.innerWidth; // devolve o tamanho da largura da janela do usuário
+
+      if (largura >= 500) {
+        largura = 600;
+        altura = 600;
+      } // deixar fixo o tamanho da tela. Obs: Esses números são em pixels
+
+      canvas.width = largura;
+      canvas.height = altura;
+      canvas.style.border = "1px solid #000"; //cria uma borda preta
+
+      document.addEventListener("keydown", keyPush);
+      estadoAtual = estados.jogar;
+      record = localStorage.getItem("record");
+
+      if (record == null) record = 0;
+      intervalControl = setInterval(game, framesPerSecond);
+    }
+    main();
+  </script>
+</body>
+
+</html>
